@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future checkLogin(String username, String password, context) async {
   EasyLoading.show(status: 'loading...');
 
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/login');
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/manager/login');
   http
       .post(
     url,
@@ -21,7 +21,7 @@ Future checkLogin(String username, String password, context) async {
       final prefs = await SharedPreferences.getInstance();
       var data = jsonDecode(req.body);
       prefs.setString('token', data['token']);
-      prefs.setInt('idm', data['idc']);
+      prefs.setInt('id', data['id']);
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
@@ -70,17 +70,20 @@ Future<dynamic> inputmentor() async {
   });
 }
 
-Future<dynamic> getdataprofile() async {
+Future getdataprofile() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? idUser = prefs.getInt('idm');
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/$idUser');
+  int? idUser = prefs.getInt('id');
+  print(idUser);
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/manager/$idUser');
   return await http
       .get(
     url,
     headers: headers,
   )
       .then((req) async {
+    print(req.statusCode);
+    print(req.body);
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;
