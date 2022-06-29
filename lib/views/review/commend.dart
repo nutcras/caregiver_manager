@@ -75,13 +75,6 @@ class _CommendPageState extends State<CommendPage> {
                               fontSize: 18,
                             ),
                           ),
-                          //                 maxLines: 1,
-                          // overflow: TextOverflow.ellipsis,
-                          // textAlign: _align,
-                          // style: TextStyle(
-                          //   color: Colors.black,
-                          //   fontSize: 15
-                          // ),
                         ],
                       ),
                     ),

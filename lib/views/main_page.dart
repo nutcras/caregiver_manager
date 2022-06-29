@@ -1,6 +1,7 @@
 import 'package:caregiver_manager/models/sidemenu.dart';
 import 'package:caregiver_manager/views/acept_mentor.dart';
 import 'package:caregiver_manager/views/profile_manager.dart';
+import 'package:caregiver_manager/views/review/all_mentor.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -36,16 +37,14 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
           ),
-          Container(
-            child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                          builder: (BuildContext context) => const Profiles()));
-                },
-                child: Text('ดูข้อมูลส่วนตัว')),
-          )
+          TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) => const AllMentor()));
+              },
+              child: Text('ดูพนักงานที่ทำงานได้'))
         ],
       ),
       drawer: SideMenu(),
