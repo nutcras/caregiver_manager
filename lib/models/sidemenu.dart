@@ -76,13 +76,13 @@ ${data['fname']}  ${data['lname']}''',
               ),
             ),
           ),
-          Expanded(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.zero,
-              children: [],
-            ),
-          ),
+          // Expanded(
+          //   child: ListView(
+          //     physics: const BouncingScrollPhysics(),
+          //     padding: EdgeInsets.zero,
+          //     children: [],
+          //   ),
+          // ),
           Align(
             alignment: Alignment.bottomLeft,
             child: Column(
@@ -92,7 +92,7 @@ ${data['fname']}  ${data['lname']}''',
                   // leading: Icon(FontAwesomeIcons.rightFromBracket),
                   title: const Text(
                     'ออกจากระบบ',
-                    style: const TextStyle(color: Colors.red),
+                    style: TextStyle(color: Colors.red),
                   ), //แก้ตรงนี้--------------------------------------------------------------------------------------
                   onTap: () async {
                     SharedPreferences prefs =
