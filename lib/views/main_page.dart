@@ -1,6 +1,6 @@
 import 'package:caregiver_manager/models/sidemenu.dart';
+import 'package:caregiver_manager/views/acept_mentor.dart';
 import 'package:caregiver_manager/views/profile_manager.dart';
-import 'package:caregiver_manager/views/search_mentor.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {

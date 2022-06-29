@@ -24,6 +24,7 @@ Future checkLogin(String username, String password, context) async {
       prefs.setInt('id', data['id']);
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
+      print(data);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const MainPage()),
           (Route<dynamic> route) => false);
@@ -33,22 +34,38 @@ Future checkLogin(String username, String password, context) async {
   });
 }
 
-Future<dynamic> removeBooking(dynamic idbook, context) async {
+Future<dynamic> confirmMentor(dynamic idMentor, String status, context) async {
   Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/booking/$idbook'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
-  return await http
+      'http://206.189.92.71:3200/api/mentor/upAccept/$idMentor'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
+  http
       .put(url,
           headers: headers,
           body: jsonEncode({
-            "bstatus": 74,
+            "status_id": status,
           }))
-      .then((req) async {
+      .then((req) {
     if (req.statusCode == 204) {
       EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('/book', (Route<dynamic> route) => false);
+      Navigator.pop(context);
     } else {
       EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
+Future<dynamic> inputmentorunaccept() async {
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/mentor/unconfirm/');
+  return await http
+      .get(
+    url,
+    headers: headers,
+  )
+      .then((req) {
+    if (req.statusCode == 200) {
+      var data = jsonDecode(req.body);
+      return data;
+    } else {
+      return null;
     }
   });
 }
@@ -60,7 +77,7 @@ Future<dynamic> inputmentor() async {
     url,
     headers: headers,
   )
-      .then((req) async {
+      .then((req) {
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;
@@ -103,7 +120,7 @@ Future<dynamic> getdata(dynamic idPage) async {
       .get(
     url,
   )
-      .then((req) async {
+      .then((req) {
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;
@@ -120,7 +137,7 @@ Future<dynamic> inputcommend(dynamic idMentor) async {
       .get(
     url,
   )
-      .then((req) async {
+      .then((req) {
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;

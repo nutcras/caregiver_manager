@@ -1,15 +1,16 @@
-import 'package:caregiver_manager/views/confirm_mentor.dart';
-import 'package:caregiver_manager/models/sidemenu.dart';
+import 'package:caregiver_manager/views/review/commend.dart';
 import 'package:flutter/material.dart';
-import 'package:caregiver_manager/configs/api.dart';
 
-class InputMentor extends StatefulWidget {
-  const InputMentor({Key? key, data}) : super(key: key);
+import '../../configs/api.dart';
+
+class AllMentor extends StatefulWidget {
+  const AllMentor({Key? key}) : super(key: key);
+
   @override
-  State<InputMentor> createState() => _InputMentorState();
+  State<AllMentor> createState() => _AllMentorState();
 }
 
-class _InputMentorState extends State<InputMentor> {
+class _AllMentorState extends State<AllMentor> {
   dynamic data;
 
   @override
@@ -20,6 +21,7 @@ class _InputMentorState extends State<InputMentor> {
 
   startApi() async {
     var item = await inputmentor();
+
     setState(() {
       data = item;
     });
@@ -28,11 +30,7 @@ class _InputMentorState extends State<InputMentor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 227, 227, 227),
-      appBar: AppBar(
-        title: const Text('หาพี่เลี้ยง'),
-        backgroundColor: const Color.fromARGB(255, 45, 134, 156),
-      ),
+      appBar: AppBar(),
       body: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: RefreshIndicator(
@@ -42,17 +40,12 @@ class _InputMentorState extends State<InputMentor> {
             child: ListView.builder(
               itemCount: data?.length ?? 0,
               itemBuilder: (context, i) => InkWell(
-                // onTap: () => Navigator.pushNamed(context, "/CDT"),
                 onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute<void>(
-                  //         builder: (BuildContext context) =>
-                  //             Carddetail(data: data[i])));
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                          builder: (BuildContext context) => ConfirmMentor()));
+                          builder: (BuildContext context) =>
+                              CommendPage(data1: data[i])));
                 },
                 child: Card(
                   elevation: 10,
@@ -90,16 +83,12 @@ class _InputMentorState extends State<InputMentor> {
                                       '${data[i]['title']} ${data[i]['fname']} ${data[i]['lname']}',
                                       style: const TextStyle(fontSize: 15),
                                     ),
-
                                     Text(
                                       '${data[i]['phone']}',
                                       style: const TextStyle(
                                         fontSize: 20,
                                       ),
                                     ),
-
-                                    // Text(
-                                    //     'ผู้รีวิว :${data[i]['countScore']}   จำนวนคะแนน :${data[i]['averageRatting']}')
                                   ],
                                 ),
                               ),

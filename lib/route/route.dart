@@ -1,6 +1,6 @@
 import 'package:caregiver_manager/views/main_page.dart';
 import 'package:flutter/material.dart';
-import 'package:caregiver_manager/views/search_mentor.dart';
+import 'package:caregiver_manager/views/acept_mentor.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   '/PageInput': (context) => const InputMentor(),

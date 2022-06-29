@@ -3,8 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../configs/api.dart';
 
 class CommendPage extends StatefulWidget {
-  CommendPage({Key? key, required this.data1}) : super(key: key);
-  dynamic data1;
+  const CommendPage({Key? key, required this.data1}) : super(key: key);
+  final dynamic data1;
   @override
   State<CommendPage> createState() => _CommendPageState();
 }
@@ -46,46 +46,45 @@ class _CommendPageState extends State<CommendPage> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          const SizedBox(
-                            width: 10,
+                    const SizedBox(width: 15),
+                    Container(
+                      padding: const EdgeInsets.all(22),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${data[i]['fname']}',
+                            style: const TextStyle(fontSize: 15),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(22),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${data[i]['fname']}',
-                                  style: const TextStyle(fontSize: 15),
-                                ),
-                                RatingBarIndicator(
-                                  //ดาวคะแนน---------------------**********************************
-                                  rating: double.parse('3'),
-                                  itemSize: 20,
-                                  itemPadding:
-                                      EdgeInsets.symmetric(horizontal: 1),
-                                  itemBuilder: (context, _) => const Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                  ),
-                                ),
-                                Text(
-                                  '${data[i]['review']}',
-                                  style: const TextStyle(fontSize: 18),
-                                )
-                              ],
+                          RatingBarIndicator(
+                            //ดาวคะแนน---------------------**********************************
+                            rating: double.parse('3'),
+                            itemSize: 20,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 1),
+                            itemBuilder: (context, _) => const Icon(
+                              Icons.star,
+                              color: Colors.amber,
                             ),
                           ),
-                        ])
+                          Text(
+                            '${data[i]['review']}',
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                          //                 maxLines: 1,
+                          // overflow: TextOverflow.ellipsis,
+                          // textAlign: _align,
+                          // style: TextStyle(
+                          //   color: Colors.black,
+                          //   fontSize: 15
+                          // ),
+                        ],
+                      ),
+                    ),
                   ]),
             ),
           ),

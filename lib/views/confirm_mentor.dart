@@ -1,7 +1,9 @@
+import 'package:caregiver_manager/configs/api.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmMentor extends StatefulWidget {
-  const ConfirmMentor({Key? key}) : super(key: key);
+  const ConfirmMentor({Key? key, @required this.data}) : super(key: key);
+  final dynamic data;
 
   @override
   State<ConfirmMentor> createState() => _ConfirmMentorState();
@@ -27,7 +29,7 @@ class _ConfirmMentorState extends State<ConfirmMentor> {
               child: Column(
                 children: [
                   Text(
-                    'ชื่อ xxxxxxxxx สกุล xxxxxxxxx',
+                    'ชื่อ ${widget.data['fname']} สกุล xxxxxxxxx',
                     style: const TextStyle(fontSize: 18),
                   ),
                   Text('อายุ xxx', style: const TextStyle(fontSize: 18)),
@@ -50,7 +52,29 @@ class _ConfirmMentorState extends State<ConfirmMentor> {
           SizedBox(height: 20),
           const Text('ข้อมูลบัตรประชาชน'),
           SizedBox(height: 10),
-          const Text('แบบฟอร์มยืนยัน')
+          const Text('แบบฟอร์มยืนยัน'),
+          SizedBox(
+            height: 80,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: TextButton(
+                  onPressed: () {
+                    confirmMentor(widget.data['idm'], "accept", context);
+                  },
+                  child: Text('อนุมัติ'),
+                ),
+              ),
+              Expanded(
+                  child: TextButton(
+                onPressed: () {
+                  confirmMentor(widget.data['idm'], "decline", context);
+                },
+                child: Text('ไม่อนุมัติ'),
+              ))
+            ],
+          )
         ]),
       ),
     );
