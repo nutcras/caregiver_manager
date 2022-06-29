@@ -24,7 +24,6 @@ Future checkLogin(String username, String password, context) async {
       prefs.setInt('id', data['id']);
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
-      print(data);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const MainPage()),
           (Route<dynamic> route) => false);
@@ -91,7 +90,7 @@ Future getdataprofile() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? idUser = prefs.getInt('id');
-  print(idUser);
+
   Uri url = Uri.parse('http://206.189.92.71:3200/api/manager/$idUser');
   return await http
       .get(
@@ -99,8 +98,6 @@ Future getdataprofile() async {
     headers: headers,
   )
       .then((req) async {
-    print(req.statusCode);
-    print(req.body);
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;
