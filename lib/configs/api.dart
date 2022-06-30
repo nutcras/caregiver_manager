@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:caregiver_manager/views/main_page.dart';
+import 'package:caregiver_manager/views/route_page.dart';
 import 'package:flutter/material.dart';
 import 'config.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -25,7 +25,7 @@ Future checkLogin(String username, String password, context) async {
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const MainPage()),
+          MaterialPageRoute(builder: (context) => const RoutePage()),
           (Route<dynamic> route) => false);
     } else {
       EasyLoading.showError('Failed with Error');
@@ -77,6 +77,7 @@ Future<dynamic> inputmentor() async {
     headers: headers,
   )
       .then((req) {
+        print(req.body);
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;

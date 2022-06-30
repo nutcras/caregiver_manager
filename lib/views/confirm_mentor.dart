@@ -13,7 +13,7 @@ class _ConfirmMentorState extends State<ConfirmMentor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('ข้อมูลพี่เลี้ยง'),),
       body: Container(
         padding: const EdgeInsets.all(30),
         child: Column(children: [

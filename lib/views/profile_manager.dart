@@ -31,7 +31,6 @@ class _ProfilesState extends State<Profiles> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Container(
           padding: const EdgeInsets.all(20),
           child: Column(
