@@ -77,7 +77,6 @@ Future<dynamic> inputmentor() async {
     headers: headers,
   )
       .then((req) {
-        print(req.body);
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;
