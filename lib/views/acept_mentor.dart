@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:caregiver_manager/configs/api.dart';
 
 class InputMentor extends StatefulWidget {
-  const InputMentor({Key? key,}) : super(key: key);
+  const InputMentor({
+    Key? key,
+  }) : super(key: key);
   @override
   State<InputMentor> createState() => _InputMentorState();
 }
@@ -87,14 +89,15 @@ class _InputMentorState extends State<InputMentor> {
                                 Container(
                                   padding: const EdgeInsets.all(22),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '${data[i]['title']} ${data[i]['fname']} ${data[i]['lname']}',
+                                        '${data[i]['men_title']} ${data[i]['men_fname']} ${data[i]['men_lname']}',
                                         style: const TextStyle(fontSize: 15),
                                       ),
                                       Text(
-                                        '${data[i]['phone']}',
+                                        '${data[i]['men_phone']}',
                                         style: const TextStyle(
                                           fontSize: 20,
                                         ),

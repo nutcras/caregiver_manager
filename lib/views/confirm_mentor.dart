@@ -13,7 +13,9 @@ class _ConfirmMentorState extends State<ConfirmMentor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('ข้อมูลพี่เลี้ยง'),),
+      appBar: AppBar(
+        title: Text('ข้อมูลพี่เลี้ยง'),
+      ),
       body: Container(
         padding: const EdgeInsets.all(30),
         child: Column(children: [
@@ -29,11 +31,11 @@ class _ConfirmMentorState extends State<ConfirmMentor> {
               child: Column(
                 children: [
                   Text(
-                    'ชื่อ ${widget.data['fname']} สกุล xxxxxxxxx',
+                    'ชื่อ ${widget.data['men_fname']} สกุล ${widget.data['men_lname']}',
                     style: const TextStyle(fontSize: 18),
                   ),
                   Text('อายุ xxx', style: const TextStyle(fontSize: 18)),
-                  Text('ประเภทที่เลือก xxxxxxx',
+                  Text('ประเภทที่เลือก ${widget.data['type']}',
                       style: const TextStyle(fontSize: 18)),
                 ],
               ),
@@ -61,7 +63,7 @@ class _ConfirmMentorState extends State<ConfirmMentor> {
               Expanded(
                 child: TextButton(
                   onPressed: () {
-                    confirmMentor(widget.data['idm'], "accept", context);
+                    confirmMentor(widget.data['men_id'], "accept", context);
                   },
                   child: Text('อนุมัติ'),
                 ),
@@ -69,7 +71,7 @@ class _ConfirmMentorState extends State<ConfirmMentor> {
               Expanded(
                   child: TextButton(
                 onPressed: () {
-                  confirmMentor(widget.data['idm'], "decline", context);
+                  confirmMentor(widget.data['men_id'], "decline", context);
                 },
                 child: Text('ไม่อนุมัติ'),
               ))

@@ -21,7 +21,7 @@ Future checkLogin(String username, String password, context) async {
       final prefs = await SharedPreferences.getInstance();
       var data = jsonDecode(req.body);
       prefs.setString('token', data['token']);
-      prefs.setInt('id', data['id']);
+      prefs.setInt('id', data['manager_id']);
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
@@ -98,26 +98,6 @@ Future getdataprofile() async {
     headers: headers,
   )
       .then((req) async {
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
-}
-
-Future<dynamic> getdata(dynamic idPage) async {
-  final prefs =
-      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? idUser = prefs.getInt('idm');
-  Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/booking/men/$idPage/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
-  return await http
-      .get(
-    url,
-  )
-      .then((req) {
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;

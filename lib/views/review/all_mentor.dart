@@ -79,14 +79,15 @@ class _AllMentorState extends State<AllMentor> {
                                 Container(
                                   padding: const EdgeInsets.all(22),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '${data[i]['title']} ${data[i]['fname']} ${data[i]['lname']}',
+                                        '${data[i]['men_title']} ${data[i]['men_fname']} ${data[i]['men_lname']}',
                                         style: const TextStyle(fontSize: 15),
                                       ),
                                       Text(
-                                        '${data[i]['phone']}',
+                                        '${data[i]['men_phone']}',
                                         style: const TextStyle(
                                           fontSize: 20,
                                         ),

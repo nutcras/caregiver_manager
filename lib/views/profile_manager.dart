@@ -23,8 +23,8 @@ class _ProfilesState extends State<Profiles> {
     var item = await getdataprofile();
     setState(() {
       data = item;
-      fname.text = data['fname'];
-      lname.text = data['lname'];
+      fname.text = data['manager_fname'];
+      lname.text = data['manager_lname'];
     });
   }
 
